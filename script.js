@@ -18,8 +18,6 @@
     master: [0.7081,0.7331,0.8132,0.8993,0.8944,0.9255,0.6341,0.7425,0.9326,0.9062,0.6237,0.8161,0.8609,0.9004,0.6788,0.869,0.9426,0.912,0.8582,0.9497,0.9348,0.7835,0.8084,0.9537,0.9125,0.7496,0.863,0.918,0.9123,0.7352,0.8935,0.9528,0.9176,0.941,0.9491,0.9424,0.7812,0.8196,0.9618,0.9107,0.7288,0.8772,0.9129,0.9185,0.7161,0.9028,0.9417,0.9049,0.9188,0.9479,0.9302,0.6966,0.8068,0.9312,0.9291,0.7169,0.8846,0.9355,0.8995,0.6916,0.9043,0.9707,0.7356,0.5763,0.9401,0.8166,0.7656,0.8364,0.9515,0.9218,0.6917,0.9624,0.9388,0.8576,0.7264,0.9122,0.9471,0.9163,0.925,0.9777,0.919,0.7983,0.8665,0.9381,0.9148,0.7631,0.9064,0.9382,0.8307,0.7829,0.9416,0.953,0.9103,0.9321,0.9791,0.9869,0.9737,0.9771,0.9685,0.9855,0.9874,0.953,0.9727,0.9819,0.9612,0.9655,0.9873,0.9744,0.9595,0.9933,0.9838,0.9721,0.9696,0.9802,0.9588,0.9787,0.9522,0.9807,0.973,0.9677,0.9613,0.973,0.9494,0.8021,0.7685,0.8552,0.9363,1.0,0.9431,0.9146,0.7602,0.9062,0.9639,0.8176,0.7961,0.9075,0.921,0.9295,0.9928,0.9503,0.9216,0.712,0.8954,0.9565,0.8873,0.7622,0.9149,0.9826,0.8231,0.756,0.978,0.9418,0.9023,0.8241,0.1345,0.06,0.06,0.06,0.06,0.06]
   };
 
-  var BAR_COUNT = 160;
-
   /* ------------------------------------------------------------------
      Nav: background on scroll + mobile menu toggle
      ------------------------------------------------------------------ */
@@ -155,6 +153,7 @@
     var barsBg = player.querySelector('.wave-bars--bg');
     var barsFg = player.querySelector('.wave-bars--fg');
     var progressEl = player.querySelector('.wave-progress');
+    var playheadEl = player.querySelector('.wave-playhead');
     var currentEl = player.querySelector('.wave-time__current');
     var durationEl = player.querySelector('.wave-time__duration');
 
@@ -168,6 +167,7 @@
     function setProgress(ratio) {
       ratio = Math.min(1, Math.max(0, ratio));
       progressEl.style.width = (ratio * 100) + '%';
+      if (playheadEl) playheadEl.style.left = (ratio * 100) + '%';
       waveTrack.setAttribute('aria-valuenow', Math.round(ratio * 100));
     }
 
@@ -215,9 +215,24 @@
       setProgress(ratio);
     }
 
-    waveTrack.addEventListener('click', function (e) {
+    var isDragging = false;
+
+    waveTrack.addEventListener('pointerdown', function (e) {
+      isDragging = true;
+      waveTrack.setPointerCapture(e.pointerId);
       seekFromEvent(e.clientX);
     });
+
+    waveTrack.addEventListener('pointermove', function (e) {
+      if (!isDragging) return;
+      seekFromEvent(e.clientX);
+    });
+
+    function endDrag(e) {
+      isDragging = false;
+    }
+    waveTrack.addEventListener('pointerup', endDrag);
+    waveTrack.addEventListener('pointercancel', endDrag);
 
     waveTrack.addEventListener('keydown', function (e) {
       if (!audio.duration) return;
