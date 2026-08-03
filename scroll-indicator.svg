@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 20" fill="none" role="img" aria-hidden="true">
+  <style>
+    .dot {
+      animation: scrollMove 2s ease-in-out infinite;
+      transform-origin: center;
+    }
+    @keyframes scrollMove {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(6px); opacity: 0.3; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dot { animation: none; }
+    }
+  </style>
+  <rect x="1" y="1" width="12" height="18" rx="6" stroke="#797d9b" stroke-width="1.2"/>
+  <circle class="dot" cx="7" cy="6" r="1.6" fill="#797d9b"/>
+</svg>
