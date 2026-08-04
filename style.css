@@ -21,6 +21,7 @@
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.16);
   --glass: rgba(255, 255, 255, 0.03);
+  --form-error: #ff8080;
 
   --font-display: 'Unbounded', sans-serif;
   --font-body: 'Manrope', sans-serif;
@@ -698,6 +699,77 @@ p { margin: 0; }
 }
 .contact__email-note a:hover { color: var(--text); }
 
+.contact__divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 480px;
+  margin: 40px auto 0;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.contact__divider::before,
+.contact__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.contact-form {
+  max-width: 480px;
+  margin: 32px auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.contact-form__honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.contact-form__row { display: flex; flex-direction: column; gap: 8px; }
+.contact-form__row label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.contact-form__row input,
+.contact-form__row textarea {
+  width: 100%;
+  background: var(--glass);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.contact-form__row textarea { resize: vertical; min-height: 110px; }
+.contact-form__row input::placeholder,
+.contact-form__row textarea::placeholder { color: var(--text-faint); }
+.contact-form__row input:focus,
+.contact-form__row textarea:focus {
+  outline: none;
+  border-color: var(--blue-ice);
+  background: rgba(174, 184, 255, 0.05);
+}
+.contact-form__submit {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.contact-form__submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+.contact-form__status {
+  min-height: 1.2em;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+.contact-form__status--ok { color: var(--blue-ice); }
+.contact-form__status--error { color: var(--form-error); }
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
@@ -715,12 +787,85 @@ p { margin: 0; }
 .footer__logo { height: 20px; width: auto; opacity: 0.85; }
 .footer__social { display: flex; gap: 26px; font-size: 0.88rem; color: var(--text-muted); }
 .footer__social a:hover { color: var(--text); }
+
+.footer__legal-links {
+  max-width: var(--container);
+  margin: 28px auto 0;
+  padding: 24px 28px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.footer__legal-links a:hover { color: var(--text); }
+
+.footer__legal-info {
+  max-width: 480px;
+  margin: 24px auto 0;
+  padding: 0 28px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+.footer__legal-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+.footer__legal-info strong { color: var(--text-muted); font-weight: 600; }
+
 .footer__copy {
   text-align: center;
   color: var(--text-faint);
   font-size: 0.8rem;
-  margin-top: 36px;
+  margin-top: 20px;
 }
+
+/* ==========================================================================
+   LEGAL PAGES (Términos y Condiciones, Política de Privacidad)
+   ========================================================================== */
+.legal-page__back {
+  display: inline-block;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+  transition: color 0.25s;
+}
+.legal-page__back:hover { color: var(--blue-ice); }
+
+.legal-page__header { margin-bottom: 48px; }
+.legal-page__updated {
+  margin-top: 16px;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.legal-page__content p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.legal-page__content h2 {
+  font-size: 1.15rem;
+  color: var(--text);
+  margin: 44px 0 14px;
+}
+.legal-page__content h2:first-of-type { margin-top: 8px; }
+.legal-page__content a {
+  color: var(--blue-ice);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-page__content a:hover { color: var(--text); }
 
 /* ==========================================================================
    RESPONSIVE

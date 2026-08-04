@@ -267,4 +267,59 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ------------------------------------------------------------------
+     Contact form (FormSubmit — no backend required)
+     Submits via fetch to FormSubmit's AJAX endpoint so the visitor gets
+     inline success/error feedback without leaving the page. If fetch
+     fails for any reason, the form still has a valid action/method, so
+     it degrades gracefully to a normal POST submission.
+     ------------------------------------------------------------------ */
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Honeypot: if this hidden field got filled in, it was a bot — do nothing.
+      var honey = contactForm.querySelector('.contact-form__honey');
+      if (honey && honey.value) return;
+
+      var statusEl = contactForm.querySelector('.contact-form__status');
+      var submitBtn = contactForm.querySelector('.contact-form__submit');
+      var submitText = contactForm.querySelector('.contact-form__submit-text');
+
+      submitBtn.disabled = true;
+      submitText.textContent = 'Enviando…';
+      statusEl.textContent = '';
+      statusEl.className = 'contact-form__status';
+
+      var payload = {};
+      new FormData(contactForm).forEach(function (value, key) { payload[key] = value; });
+
+      var ajaxUrl = contactForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+      fetch(ajaxUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('request failed');
+          return res.json();
+        })
+        .then(function () {
+          statusEl.textContent = 'Mensaje enviado. ¡Gracias! Te responderé pronto.';
+          statusEl.classList.add('contact-form__status--ok');
+          contactForm.reset();
+        })
+        .catch(function () {
+          statusEl.textContent = 'No se pudo enviar el mensaje. Escríbeme directo a irk.studioss@gmail.com.';
+          statusEl.classList.add('contact-form__status--error');
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitText.textContent = 'Enviar mensaje';
+        });
+    });
+  }
+
 })();

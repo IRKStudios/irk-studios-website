@@ -337,6 +337,40 @@
         </div>
 
         <p class="contact__email-note">¿Prefieres escribir por correo? <a href="mailto:irk.studioss@gmail.com">irk.studioss@gmail.com</a></p>
+
+        <div class="contact__divider" role="separator" aria-label="o completa el formulario">
+          <span>o completa el formulario</span>
+        </div>
+
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/irk.studioss@gmail.com" method="POST">
+          <!-- FormSubmit configuration: no backend needed. First submission triggers a one-time
+               confirmation email to irk.studioss@gmail.com that must be clicked to activate it. -->
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio de IRK.Studios">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="contact-form__row">
+            <label for="cf-name">Nombre</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+
+          <div class="contact-form__row">
+            <label for="cf-email">Correo electrónico</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
+
+          <div class="contact-form__row">
+            <label for="cf-message">Mensaje</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary contact-form__submit">
+            <span class="contact-form__submit-text">Enviar mensaje</span>
+          </button>
+
+          <p class="contact-form__status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
@@ -435,6 +469,19 @@
         <a href="mailto:irk.studioss@gmail.com">Correo</a>
       </div>
     </div>
+
+    <nav class="footer__legal-links" aria-label="Legal">
+      <a href="terminos.html">Términos y Condiciones</a>
+      <a href="privacidad.html">Política de Privacidad</a>
+    </nav>
+
+    <!-- TODO: replace [NOMBRE O RAZÓN SOCIAL] and [RUT O IDENTIFICADOR] with your real business details -->
+    <div class="footer__legal-info">
+      <p class="footer__legal-title">Información legal</p>
+      <p>Este sitio es administrado por <strong>[NOMBRE O RAZÓN SOCIAL]</strong>.</p>
+      <p>RUT / Identificador: <strong>[RUT O IDENTIFICADOR]</strong></p>
+    </div>
+
     <p class="footer__copy">© <span id="year">2026</span> IRK.Studios. Todos los derechos reservados.</p>
   </footer>
 
