@@ -1,0 +1,7 @@
+# IRK.Studios — robots.txt
+# Allow all search engines to crawl the entire site.
+User-agent: *
+Allow: /
+
+# TODO: replace this with your real domain once the site is live
+Sitemap: https://www.irkstudios.com/sitemap.xml

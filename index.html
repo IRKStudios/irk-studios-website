@@ -220,9 +220,15 @@
               <h3>Maqueta enviada por el cliente</h3>
             </div>
             <div class="wave-player__controls">
+              <button class="wave-skip wave-skip--back" type="button" aria-label="Retroceder 5 segundos">
+                <img src="assets/icons/skip-back.svg" alt="" width="18" height="18">
+              </button>
               <button class="wave-play" type="button" aria-label="Reproducir maqueta">
                 <img class="icon-play" src="assets/icons/play.svg" alt="" width="18" height="18">
                 <img class="icon-pause" src="assets/icons/pause.svg" alt="" width="18" height="18" hidden>
+              </button>
+              <button class="wave-skip wave-skip--forward" type="button" aria-label="Adelantar 5 segundos">
+                <img src="assets/icons/skip-forward.svg" alt="" width="18" height="18">
               </button>
               <div class="wave-track" tabindex="0" role="slider" aria-label="Progreso de audio: maqueta" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                 <div class="wave-visual">
@@ -242,9 +248,15 @@
               <h3>Producción Final <span class="wave-player__sub">(Máster)</span></h3>
             </div>
             <div class="wave-player__controls">
+              <button class="wave-skip wave-skip--back" type="button" aria-label="Retroceder 5 segundos">
+                <img src="assets/icons/skip-back.svg" alt="" width="18" height="18">
+              </button>
               <button class="wave-play" type="button" aria-label="Reproducir producción final">
                 <img class="icon-play" src="assets/icons/play.svg" alt="" width="18" height="18">
                 <img class="icon-pause" src="assets/icons/pause.svg" alt="" width="18" height="18" hidden>
+              </button>
+              <button class="wave-skip wave-skip--forward" type="button" aria-label="Adelantar 5 segundos">
+                <img src="assets/icons/skip-forward.svg" alt="" width="18" height="18">
               </button>
               <div class="wave-track" tabindex="0" role="slider" aria-label="Progreso de audio: producción final" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                 <div class="wave-visual">
@@ -342,12 +354,19 @@
           <span>o completa el formulario</span>
         </div>
 
+        <!-- FormSubmit destination: change the email address right here (both in the form's
+             action URL below) if you ever need messages to go to a different inbox. -->
         <form class="contact-form" id="contactForm" action="https://formsubmit.co/irk.studioss@gmail.com" method="POST">
           <!-- FormSubmit configuration: no backend needed. First submission triggers a one-time
-               confirmation email to irk.studioss@gmail.com that must be clicked to activate it. -->
+               confirmation email to irk.studioss@gmail.com that must be clicked to activate it.
+               Until confirmed, submissions will show the inline error message below the form. -->
           <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio de IRK.Studios">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
+          <!-- TODO: replace with your real domain once the site is live (used only as a fallback
+               redirect if JavaScript is unavailable — the normal flow shows an inline message and
+               never leaves this page) -->
+          <input type="hidden" name="_next" value="https://www.irkstudios.com/gracias.html">
           <input type="text" name="_honey" class="contact-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="contact-form__row">
@@ -475,10 +494,9 @@
       <a href="privacidad.html">Política de Privacidad</a>
     </nav>
 
-    <!-- TODO: replace [NOMBRE O RAZÓN SOCIAL] and [RUT O IDENTIFICADOR] with your real business details -->
     <div class="footer__legal-info">
       <p class="footer__legal-title">Información legal</p>
-      <p>Este sitio es administrado por <strong>Irenko Amaru Rodriguez Salas</strong>.</p>
+      <p>Este sitio es administrado por <strong>Irenko Amaru Rodríguez Salas</strong>.</p>
       <p>RUT / Identificador: <strong>21.632.277-0</strong></p>
     </div>
 
